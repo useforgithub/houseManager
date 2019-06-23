@@ -22,6 +22,28 @@ layui.use(['form', 'upload'], function () {
             }
         });
     }
+    
+    $(function () {
+        initHouseInfo($('#houseId').val());
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#checkDate'
+                , type: 'datetime'
+            });
+        })
+    })
+
+    function initHouseInfo(houseId) {
+        $.ajax({
+            url: "../houses/getHouseInfoByHouseMainInfoVo",
+            data: {id: houseId},
+            type: "post",
+            success: function (data) {
+                initDefauleHouseInfo(data.data);
+            }
+        })
+    }
 
     window.picupload("#exampleImage00", "#crackPreview00");
     window.picupload("#fullExampleImage0", "#itemPreview0");
@@ -308,29 +330,45 @@ layui.use(['form', 'upload'], function () {
         
         window.picupload("#exampleImage" + crackNum, "#crackPreview" + crackNum);
     }
-})
-
-$(function () {
-    initHouseInfo($('#houseId').val());
-    layui.use('laydate', function () {
-        var laydate = layui.laydate;
-        laydate.render({
-            elem: '#checkDate'
-            , type: 'datetime'
-        });
-    })
-})
-
-function initHouseInfo(houseId) {
-    $.ajax({
-        url: "../houses/getHouseInfoByHouseMainInfoVo",
-        data: {id: houseId},
-        type: "post",
-        success: function (data) {
-            initDefauleHouseInfo(data.data);
+    
+    function initDefauleHouseInfo(data) {
+        $("#projectNmae").val(data.projectName);
+        $("#houseNum").val(data.houseNum);
+        $("#checkDate").val(formatDate(new Date(data.checkDate)));
+        if (data.signPath != null) {
+        	$("#previewSign").attr("src","/houses/showImage?imgFile=" + data.signPath);
         }
-    })
-}
+//        $("#masterName").val(data.masterName);
+
+        //组装构件项
+        var content = "";
+        if (data.houseItemVoList != null) {
+            for (var i = 0; i < data.houseItemVoList.length; i++) {
+                var currItem = data.houseItemVoList[i];
+                content += buildItem(currItem, i);
+            }
+            if (content != '') {
+                $(content).insertBefore($('#projectItemInfo').children('div').last());
+                for (var j = 0; j < data.houseItemVoList.length; j++) {
+                    window.picupload('#fullExampleImage' + j, '#itemPreview' + j);
+                    var currHouseItem = data.houseItemVoList[j];
+                    if (currHouseItem.itemCrackVoList != null) {
+                        for (var k = 0; k < currHouseItem.itemCrackVoList.length; k++) {
+                        	
+                            window.picupload('#exampleImage' + j + k, '#crackPreview' + j + k);
+                            itemCrackTypeChange(j + '' + k);
+                            itemWallDamageChange(j + '' + k);
+                            itemDirectionChange(j + '' + k);
+                            itemWallDamageChangeOne(j + '' + k);
+                        }
+                    }
+                }
+            }
+        }
+    }
+})
+
+
 
 function formatDate(now) {
     var year = now.getFullYear();
@@ -364,41 +402,7 @@ layui.use('flow', function(){
 	  });
 	});
 
-function initDefauleHouseInfo(data) {
-    $("#projectNmae").val(data.projectName);
-    $("#houseNum").val(data.houseNum);
-    $("#checkDate").val(formatDate(new Date(data.checkDate)));
-    if (data.signPath != null) {
-    	$("#previewSign").attr("src","/houses/showImage?imgFile=" + data.signPath);
-    }
-//    $("#masterName").val(data.masterName);
 
-    //组装构件项
-    var content = "";
-    if (data.houseItemVoList != null) {
-        for (var i = 0; i < data.houseItemVoList.length; i++) {
-            var currItem = data.houseItemVoList[i];
-            content += buildItem(currItem, i);
-        }
-        if (content != '') {
-            $(content).insertBefore($('#projectItemInfo').children('div').last());
-            for (var j = 0; j < data.houseItemVoList.length; j++) {
-                window.picupload('#fullExampleImage' + j, '#itemPreview' + j);
-                var currHouseItem = data.houseItemVoList[j];
-                if (currHouseItem.itemCrackVoList != null) {
-                    for (var k = 0; k < currHouseItem.itemCrackVoList.length; k++) {
-                    	
-                        window.picupload('#exampleImage' + j + k, '#crackPreview' + j + k);
-                        itemCrackTypeChange(j + '' + k);
-                        itemWallDamageChange(j + '' + k);
-                        itemDirectionChange(j + '' + k);
-                        itemWallDamageChangeOne(j + '' + k);
-                    }
-                }
-            }
-        }
-    }
-}
 
 function buildItem(item, sort) {
     var itemContent = '<div id="item' + sort + '" class="layui-row" style="margin-top: 25px;">';
