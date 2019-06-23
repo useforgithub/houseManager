@@ -283,7 +283,8 @@ public class HouseController {
         //response.setHeader告诉浏览器以什么方式打开
         //假如文件名称是中文则要使用 URLEncoder.encode()编码
         //否则直接使用response.setHeader("content-disposition", "attachment;filename=" + filename);即可
-        response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode("house.pdf", "UTF-8"));
+        String pdfFileName = "分户现状调查表_" + houseMainInfoVo.getProjectName() + houseMainInfoVo.getHouseNum() + ".pdf";
+        response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(pdfFileName, "UTF-8"));
 
         InputStream in = null;
         OutputStream out = null;

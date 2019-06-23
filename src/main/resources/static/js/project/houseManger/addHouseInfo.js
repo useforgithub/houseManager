@@ -463,7 +463,6 @@ layui.use(['form', 'upload'], function () {
 
     window.addCrackItem =  function(itemNum) {
         //获取对应构件的裂缝的序号
-    	debugger
         var currSort = '0';
         var lastSecondDiv = undefined;
         $("#projectItemInfo").children('div').each(function () {
