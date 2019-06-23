@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houses.dao.IHouseItemDao">
+
+    <sql id="allProp">
+        id                  id,
+        house_id            houseId,
+        item_serial         itemSerial,
+        item_direction      itemDirection,
+        item_location       itemLocation,
+        item_full_example_image      fullItemExampleImage,
+        comment             comment,
+        item_crack_type     itemCrackType,
+        item_wall           itemWallDamage
+    </sql>
+
+    <select id="queryItemById" parameterType="java.lang.Integer" resultType="com.houses.common.vo.HouseItemVo">
+      select <include refid="allProp"></include> from house_item
+        where house_id = #{id}
+    </select>
+
+    <insert id="batchSaveHouseItem" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+            insert into house_item
+            (
+                    house_id,
+                    item_serial,
+                    item_direction,
+                    item_location,
+                    item_full_example_image,
+                    comment,
+                    item_crack_type,
+                    item_wall
+            )
+            values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (
+                    #{item.houseId},
+                    #{item.itemSerial},
+                    #{item.itemDirection},
+                    #{item.itemLocation},
+                    #{item.fullItemExampleImage},
+                    #{item.comment},
+                    #{item.itemCrackType},
+                    #{item.itemWallDamage}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deteteItemInfoByHouseId" parameterType="java.util.List">
+        delete from house_item where house_id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+    
+    <select id="queryItemByHouseIds" parameterType="java.util.List" resultType="com.houses.common.vo.HouseItemVo">
+        select <include refid="allProp" /> from house_item where house_id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

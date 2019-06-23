@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houses.dao.IHouseMainInfoDao">
+
+    <sql id="allProp">
+        id             id,
+        project_name   projectName,
+        house_number   houseNum,
+        check_date     checkDate,
+        master_name    masterName,
+        sign_path      signPath
+    </sql>
+
+    <select id="selectHouseMainInfoById" resultType="com.houses.common.vo.HouseMainInfoVo"
+            parameterType="com.houses.common.vo.HouseMainInfoVo">
+        SELECT
+        <include refid="allProp"/>
+        FROM house_main_info
+        where id = #{id}
+    </select>
+
+    <select id="queryHousesCount" resultType="java.lang.Integer">
+        SELECT count(*)  FROM house_main_info
+    </select>
+
+    <select id="queryHousesPaged" resultType="com.houses.common.vo.HouseMainInfoVo">
+        SELECT
+        <include refid="allProp"/>
+        FROM house_main_info
+        order by id desc
+        limit #{start}, #{limit}
+    </select>
+
+    <insert id="saveHouseMainInfo" parameterType="com.houses.common.vo.HouseMainInfoVo" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into house_main_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projectName != '' and projectName != null">
+                project_name,
+            </if>
+            <if test="houseNum != '' and houseNum != null">
+                house_number,
+            </if>
+            <if test="masterName != '' and masterName != null">
+                master_name,
+            </if>
+            <if test="checkDate != '' and checkDate != null">
+                check_date,
+            </if>
+            <if test="signPath != '' and signPath != null">
+                sign_path,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projectName != '' and projectName != null">
+                #{projectName},
+            </if>
+            <if test="houseNum != '' and houseNum != null">
+                #{houseNum},
+            </if>
+            <if test="masterName != '' and masterName != null">
+                #{masterName},
+            </if>
+            <if test="checkDate != '' and checkDate != null">
+                #{checkDate},
+            </if>
+            <if test="signPath != '' and signPath != null">
+                #{signPath},
+            </if>
+        </trim>
+    </insert>
+    
+    <update id="updateHouseMainInfo" parameterType="com.houses.common.vo.HouseMainInfoVo">
+        update house_main_info set
+          project_name = #{projectName},
+          house_number = #{houseNum},
+          master_name = #{masterName},
+          check_date = #{checkDate}
+          where id = #{id}
+    </update>
+    
+    <delete id="deleteHouseInfoByIds" parameterType="java.util.List">
+        delete from house_main_info where id in 
+          <foreach collection="list" item="item" open="(" close=")" separator=",">
+              #{item}
+          </foreach>
+    </delete>
+</mapper>

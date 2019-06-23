@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.houses.dao.IItemCrackDao">
+
+    <sql id="allProp">
+        id                  id,
+        item_id            itemId,
+        max_length       maxLength,
+        max_width        maxWidth,
+        example_image             exampleImage,
+        crack_direction   crackDirection
+    </sql>
+
+    <select id="queryCrackListByIdList" parameterType="java.util.List" resultType="com.houses.common.vo.ItemCrackVo">
+        select <include refid="allProp"></include> from item_crack
+        where item_id in <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">#{item}</foreach>
+    </select>
+
+    <insert id="batchSaveItemCrack" parameterType="java.util.List">
+        insert into item_crack
+        (
+        item_id,
+        max_length,
+        max_width,
+        example_image,
+        crack_direction
+        )
+        values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (
+            #{item.itemId},
+            #{item.maxLength},
+            ${item.maxWidth},
+            #{item.exampleImage} ,
+            #{item.crackDirection}
+            )
+        </foreach>
+    </insert>
+    
+    <delete id="deleteCrackByItemIds" parameterType="java.util.List">
+        delete from item_crack where item_id in
+          <foreach collection="list" open="(" close=")" item="item" separator=",">
+            #{item}
+          </foreach>
+    </delete>
+    
+    <select id="queryCrackCountByItemId" resultType="java.lang.Integer">
+        select count(*) from item_crack
+          where item_id = #{itemId}
+    </select>
+    
+    <select id="queryCrackListById" resultType="com.houses.common.vo.ItemCrackVo">
+        select <include refid="allProp"></include> from item_crack
+        where item_id = #{itemId}
+    </select>
+</mapper>
