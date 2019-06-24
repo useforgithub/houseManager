@@ -282,6 +282,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell = setCreakItem(houseItemVo.getFullItemExampleImage(), "图" + imgNum++);
 				if(fullImageCell != null) {
 					table1.addCell(fullImageCell);
+					textNum++;
 				}
 			}
 			
@@ -289,6 +290,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell1 = setCreakItem(houseItemVo.getFullItemExampleImage1(), "图" + imgNum++);
 				if(fullImageCell1 != null) {
 					table1.addCell(fullImageCell1);
+					textNum++;
 				}
 			}
 			
@@ -296,6 +298,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell2 = setCreakItem(houseItemVo.getFullItemExampleImage2(), "图" + imgNum++);
 				if(fullImageCell2 != null) {
 					table1.addCell(fullImageCell2);
+					textNum++;
 				}
 			}
 			
@@ -303,6 +306,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell3 = setCreakItem(houseItemVo.getFullItemExampleImage3(), "图" + imgNum++);
 				if(fullImageCell3 != null) {
 					table1.addCell(fullImageCell3);
+					textNum++;
 				}
 			}
 			
@@ -310,6 +314,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell4 = setCreakItem(houseItemVo.getFullItemExampleImage4(), "图" + imgNum++);
 				if(fullImageCell4 != null) {
 					table1.addCell(fullImageCell4);
+					textNum++;
 				}
 			}
 			
@@ -317,6 +322,7 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 				PdfPCell fullImageCell5 = setCreakItem(houseItemVo.getFullItemExampleImage5(), "图" + imgNum++);
 				if(fullImageCell5 != null) {
 					table1.addCell(fullImageCell5);
+					textNum++;
 				}
 			}
 			

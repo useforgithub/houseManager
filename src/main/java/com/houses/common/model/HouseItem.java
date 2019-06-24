@@ -280,7 +280,7 @@ public String toString(IItemCrackDao iItemCrackDao) {
     	if(comment.length() != 0) {
 //    		sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + comment + "（图"+ ICreatePDFServiceImpl.textNum++ +"）。") ;
     		sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + comment + "（见下图）。") ;
-    		ICreatePDFServiceImpl.textNum++;
+//    		ICreatePDFServiceImpl.textNum++;
     		return sb.toString();
     	}
 		

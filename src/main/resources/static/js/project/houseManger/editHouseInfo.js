@@ -312,7 +312,6 @@ layui.use(['form', 'upload'], function () {
 
     window.addCrackItem = function (itemNum) {
         //获取对应构件的裂缝的序号
-
         var currSort = '0';
         var lastSecondDiv = undefined;
         $("#projectItemInfo").children('div').each(function () {
@@ -320,7 +319,7 @@ layui.use(['form', 'upload'], function () {
                 lastSecondDiv = $(this).find('.crack_item_style').eq(0).children('div');
             }
         });
-        if ($("#projectItemInfo").find('.crack_item_style').length > 1 && lastSecondDiv != undefined) {
+        if ($("#projectItemInfo").find('.crack_item_style').length > 0 && lastSecondDiv != undefined) {
             currSort = lastSecondDiv.eq(lastSecondDiv.length - 2).find('input').eq(0).val();
         }
         
@@ -405,7 +404,7 @@ layui.use(['form', 'upload'], function () {
         $("#projectNmae").val(data.projectName);
         $("#houseNum").val(data.houseNum);
         $("#checkDate").val(formatDate(new Date(data.checkDate)));
-        if (data.signPath != null) {
+        if (data.signPath != '') {
         	$("#previewSign").attr("src","/houses/showImage?imgFile=" + data.signPath);
         }
 //        $("#masterName").val(data.masterName);

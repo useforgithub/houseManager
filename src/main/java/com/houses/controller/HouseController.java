@@ -141,7 +141,7 @@ public class HouseController {
             
         } catch (IOException e) {
         	e.printStackTrace();
-
+        	imagePath = "";
         }
         resultDto = new ResultDto<>(ResultDto.SUCCESS, null, imagePath);
         return resultDto;

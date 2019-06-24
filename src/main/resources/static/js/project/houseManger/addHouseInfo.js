@@ -95,10 +95,12 @@ function buildSaveData() {
         if ($.trim(itemLocation) != "") {
             itemObj.itemLocation = itemLocation;
         }
-
-        var itemDirection = $('input:radio[name="itemDirection' + currItemSort + '"]:checked').val();
-        if ($.trim(itemDirection) != "") {
-            itemObj.itemDirection = itemDirection;
+        
+        if (itemLocation == '0') {
+	        var itemDirection = $('input:radio[name="itemDirection' + currItemSort + '"]:checked').val();
+	        if ($.trim(itemDirection) != "") {
+	            itemObj.itemDirection = itemDirection;
+	        }
         }
         
         var itemCrackType = $('input:radio[name="itemCrackType' + currItemSort + '"]:checked').val();
