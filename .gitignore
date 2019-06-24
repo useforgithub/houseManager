@@ -10,7 +10,6 @@ HELP.md
 .settings
 .springBeans
 .sts4-cache
-application.properties
 
 ### IntelliJ IDEA ###
 .idea
@@ -28,3 +27,4 @@ application.properties
 
 ### VS Code ###
 .vscode/
+src/main/resources/application.properties

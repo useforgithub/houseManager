@@ -46,7 +46,12 @@ layui.use(['form', 'upload'], function () {
     }
 
     window.picupload("#exampleImage00", "#crackPreview00");
-    window.picupload("#fullExampleImage0", "#itemPreview0");
+    window.picupload("#fullExampleImage00", "#itemPreview00");
+    window.picupload("#fullExampleImage01", "#itemPreview01");
+    window.picupload("#fullExampleImage02", "#itemPreview02");
+    window.picupload("#fullExampleImage03", "#itemPreview03");
+    window.picupload("#fullExampleImage04", "#itemPreview04");
+    window.picupload("#fullExampleImage05", "#itemPreview05");
 
     var sort = 0;
 
@@ -184,14 +189,74 @@ layui.use(['form', 'upload'], function () {
         itemContent += '全景图';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-
         itemContent += '<div style="border: #C2C2C2 1px solid;width: 100%;color: #C2C2C2;">';
-        itemContent += '<div id="fullExampleImage' + sort + '" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
-        itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '" value="">';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '0" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'0" value="">';
         itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
         itemContent += '</div>';
-        itemContent += '<div id="itemPreview' + sort + '" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '<div id="itemPreview' + sort + '0" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
         itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '0\')">刪除图片</button>';
+        itemContent += '</div>';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '1" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'1" value="">';
+        itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
+        itemContent += '</div>';
+        itemContent += '<div id="itemPreview' + sort + '1" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '1\')">刪除图片</button>';
+        itemContent += '</div>';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '2" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'2" value="">';
+        itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
+        itemContent += '</div>';
+        itemContent += '<div id="itemPreview' + sort + '2" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '2\')">刪除图片</button>';
+        itemContent += '</div>';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '3" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'3" value="">';
+        itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
+        itemContent += '</div>';
+        itemContent += '<div id="itemPreview' + sort + '3" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '3\')">刪除图片</button>';
+        itemContent += '</div>';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '4" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'4" value="">';
+        itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
+        itemContent += '</div>';
+        itemContent += '<div id="itemPreview' + sort + '4" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '4\')">刪除图片</button>';
+        itemContent += '</div>';
+        
+        itemContent += '<div class="layui-col-md4">';
+        itemContent += '<div id="fullExampleImage' + sort + '5" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+        itemContent += '<input type="hidden" id="fullExampleImagePath'+ sort +'5" value="">';
+        itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+        itemContent += '添加图片';
+        itemContent += '</div>';
+        itemContent += '<div id="itemPreview' + sort + '5" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+        itemContent += '</div>';
+        itemContent += '<button onclick="deleteItemImage(\''+ sort + '5\')">刪除图片</button>';
+        itemContent += '</div>';
+        
         itemContent += '</div>';
         itemContent += '</div>';
         itemContent += '</div>';
@@ -233,7 +298,12 @@ layui.use(['form', 'upload'], function () {
         var item = buildAddItem();
         var projectItemInfoChild = $("#projectItemInfo").children("div");
         $(item).insertBefore(projectItemInfoChild.eq(projectItemInfoChild.length - 1));
-        window.picupload("#fullExampleImage" + sort, "#itemPreview" + sort);
+        window.picupload("#fullExampleImage" + sort + "0", "#itemPreview" + sort + "0");
+        window.picupload("#fullExampleImage" + sort + "1", "#itemPreview" + sort + "1");
+        window.picupload("#fullExampleImage" + sort + "2", "#itemPreview" + sort + "2");
+        window.picupload("#fullExampleImage" + sort + "3", "#itemPreview" + sort + "3");
+        window.picupload("#fullExampleImage" + sort + "4", "#itemPreview" + sort + "4");
+        window.picupload("#fullExampleImage" + sort + "5", "#itemPreview" + sort + "5");
         window.picupload("#exampleImage" + sort + "0", "#crackPreview" + sort + "0");
         itemCrackTypeChange(sort + "0");
         itemWallDamageChange(sort + "0");
@@ -350,7 +420,12 @@ layui.use(['form', 'upload'], function () {
             if (content != '') {
                 $(content).insertBefore($('#projectItemInfo').children('div').last());
                 for (var j = 0; j < data.houseItemVoList.length; j++) {
-                    window.picupload('#fullExampleImage' + j, '#itemPreview' + j);
+                    window.picupload('#fullExampleImage' + j + "0", '#itemPreview' + j + "0");
+                    window.picupload('#fullExampleImage' + j + "1", '#itemPreview' + j + "1");
+                    window.picupload('#fullExampleImage' + j + "2", '#itemPreview' + j + "2");
+                    window.picupload('#fullExampleImage' + j + "3", '#itemPreview' + j + "3");
+                    window.picupload('#fullExampleImage' + j + "4", '#itemPreview' + j + "4");
+                    window.picupload('#fullExampleImage' + j + "5", '#itemPreview' + j + "5");
                     var currHouseItem = data.houseItemVoList[j];
                     if (currHouseItem.itemCrackVoList != null) {
                         for (var k = 0; k < currHouseItem.itemCrackVoList.length; k++) {
@@ -668,19 +743,92 @@ function buildItem(item, sort) {
     itemContent += '全景图';
     itemContent += '</div>';
     itemContent += '<div class="layui-col-md10">';
-
     itemContent += '<div style="border: #C2C2C2 1px solid;width: 100%;color: #C2C2C2;">';
-    itemContent += '<div id="fullExampleImage' + sort + '" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
-    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '" value="' + item.fullItemExampleImage + '">';
-    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
-    itemContent += '</div>';
-    itemContent += '<div id="itemPreview' + sort + '" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
     
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '0" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '0" value="' + item.fullItemExampleImage + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '0" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
     if (item.fullItemExampleImage != '') {
         itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage + ' class="layui-upload-img" style="width:100px;height:100px">';
     }
-    
     itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '0\')">刪除图片</button>';
+    itemContent += '</div>';
+    
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '1" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '1" value="' + item.fullItemExampleImage1 + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '1" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+    if (item.fullItemExampleImage1 != '') {
+        itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage1 + ' class="layui-upload-img" style="width:100px;height:100px">';
+    }
+    itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '1\')">刪除图片</button>';
+    itemContent += '</div>';
+    
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '2" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '2" value="' + item.fullItemExampleImage2 + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '2" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+    if (item.fullItemExampleImage2 != '') {
+        itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage2 + ' class="layui-upload-img" style="width:100px;height:100px">';
+    }
+    itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '2\')">刪除图片</button>';
+    itemContent += '</div>';
+    
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '3" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '3" value="' + item.fullItemExampleImage3 + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '3" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+    if (item.fullItemExampleImage3 != '') {
+        itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage3 + ' class="layui-upload-img" style="width:100px;height:100px">';
+    }
+    itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '3\')">刪除图片</button>';
+    itemContent += '</div>';
+    
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '4" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '4" value="' + item.fullItemExampleImage4 + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '4" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+    if (item.fullItemExampleImage4 != '') {
+        itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage4 + ' class="layui-upload-img" style="width:100px;height:100px">';
+    }
+    itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '4\')">刪除图片</button>';
+    itemContent += '</div>';
+    
+    itemContent += '<div class="layui-col-md4">';
+    itemContent += '<div id="fullExampleImage' + sort + '5" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">';
+    itemContent += '<input type="hidden" id="fullExampleImagePath' + sort + '5" value="' + item.fullItemExampleImage5 + '">';
+    itemContent += '<i class="layui-icon layui-icon-add-circle-fine" style="font-size: 80px;"></i><br />';
+    itemContent += '添加图片';
+    itemContent += '</div>';
+    itemContent += '<div id="itemPreview' + sort + '5" style="display: inline-block;vertical-align: top;margin-top: 5px;">';
+    if (item.fullItemExampleImage5 != '') {
+        itemContent += '<img src=/houses/showImage?imgFile=' + item.fullItemExampleImage5 + ' class="layui-upload-img" style="width:100px;height:100px">';
+    }
+    itemContent += '</div>';
+    itemContent += '<button onclick="deleteItemImage(\''+ sort + '5\')">刪除图片</button>';
+    itemContent += '</div>';
+    
     itemContent += '</div>';
     itemContent += '</div>';
     itemContent += '</div>';
@@ -716,6 +864,11 @@ function buildItem(item, sort) {
 
 function deleteProjectItem(sort) {
     $("#item" + sort).remove();
+}
+
+function deleteItemImage(deleteItemImage) {
+	$("#fullExampleImagePath" + deleteItemImage).val('');
+    $("#itemPreview" + deleteItemImage).remove();
 }
 
 var sort = 0;
@@ -858,8 +1011,19 @@ function buildSaveData() {
 
         itemObj.itemCrackVoList = crackList;
 
-        var fullExampleImagePath = $('#fullExampleImagePath' + currItemSort).val();
+        var fullExampleImagePath = $('#fullExampleImagePath' + currItemSort + '0').val();
         itemObj.fullItemExampleImage = fullExampleImagePath;
+        
+        var fullExampleImagePath1 = $('#fullExampleImagePath' + currItemSort + '1').val();
+        itemObj.fullItemExampleImage1 = fullExampleImagePath1;
+        var fullExampleImagePath2 = $('#fullExampleImagePath' + currItemSort + '2').val();
+        itemObj.fullItemExampleImage2 = fullExampleImagePath2;
+        var fullExampleImagePath3 = $('#fullExampleImagePath' + currItemSort + '3').val();
+        itemObj.fullItemExampleImage3 = fullExampleImagePath3;
+        var fullExampleImagePath4 = $('#fullExampleImagePath' + currItemSort + '4').val();
+        itemObj.fullItemExampleImage4 = fullExampleImagePath4;
+        var fullExampleImagePath5 = $('#fullExampleImagePath' + currItemSort + '5').val();
+        itemObj.fullItemExampleImage5 = fullExampleImagePath5;
 
         var othersInfo = $('#others' + currItemSort).val();
         itemObj.comment = othersInfo;

@@ -278,19 +278,50 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 		cellInTable.setBorder(Rectangle.NO_BORDER);
 		
 		if( houseItemVo.getComment().length() != 0) {
-			PdfPTable table12 = new PdfPTable(1);
-			PdfPCell fullImageCell = setCreakItem(houseItemVo.getFullItemExampleImage(), "图" + imgNum++);
-			fullImageCell.setPaddingLeft(8);
-//			fullImageCell.setPaddingRight(-30);
-			if(fullImageCell != null) {
-				table12.addCell(fullImageCell);
-//				table1.addCell(fullImageCell);
-				PdfPCell table13Cell = getPdfPTableCell(table12);
-				table13Cell.setBorder(Rectangle.NO_BORDER);
-//				table13Cell.setPaddingLeft(-35);
-//				table13Cell.setPaddingRight(-30);
-				table1.addCell(table13Cell);
+			if(houseItemVo.getFullItemExampleImage().length() != 0) {
+				PdfPCell fullImageCell = setCreakItem(houseItemVo.getFullItemExampleImage(), "图" + imgNum++);
+				if(fullImageCell != null) {
+					table1.addCell(fullImageCell);
+				}
 			}
+			
+			if(houseItemVo.getFullItemExampleImage1().length() != 0) {
+				PdfPCell fullImageCell1 = setCreakItem(houseItemVo.getFullItemExampleImage1(), "图" + imgNum++);
+				if(fullImageCell1 != null) {
+					table1.addCell(fullImageCell1);
+				}
+			}
+			
+			if(houseItemVo.getFullItemExampleImage2().length() != 0) {
+				PdfPCell fullImageCell2 = setCreakItem(houseItemVo.getFullItemExampleImage2(), "图" + imgNum++);
+				if(fullImageCell2 != null) {
+					table1.addCell(fullImageCell2);
+				}
+			}
+			
+			if(houseItemVo.getFullItemExampleImage3().length() != 0) {
+				PdfPCell fullImageCell3 = setCreakItem(houseItemVo.getFullItemExampleImage3(), "图" + imgNum++);
+				if(fullImageCell3 != null) {
+					table1.addCell(fullImageCell3);
+				}
+			}
+			
+			if(houseItemVo.getFullItemExampleImage4().length() != 0) {
+				PdfPCell fullImageCell4 = setCreakItem(houseItemVo.getFullItemExampleImage4(), "图" + imgNum++);
+				if(fullImageCell4 != null) {
+					table1.addCell(fullImageCell4);
+				}
+			}
+			
+			if(houseItemVo.getFullItemExampleImage5().length() != 0) {
+				PdfPCell fullImageCell5 = setCreakItem(houseItemVo.getFullItemExampleImage5(), "图" + imgNum++);
+				if(fullImageCell5 != null) {
+					table1.addCell(fullImageCell5);
+				}
+			}
+			
+			
+			
 			if(currImgNum%2 != 0) {
 				table1.addCell(cellInTable);
 			}
@@ -318,8 +349,6 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 			
 		PdfPCell table1Cell = getPdfPTableCell(table1);
 		table1Cell.setBorder(Rectangle.NO_BORDER);
-		
-
 		
 		return table1Cell;
 	}

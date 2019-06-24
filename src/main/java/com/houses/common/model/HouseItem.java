@@ -31,6 +31,11 @@ public class HouseItem extends BaseDao {
     private Integer itemLocation;
     /**全景图*/
     private String fullItemExampleImage;
+    private String fullItemExampleImage1;
+    private String fullItemExampleImage2;
+    private String fullItemExampleImage3;
+    private String fullItemExampleImage4;
+    private String fullItemExampleImage5;
     /**备注*/
     private String comment;
     
@@ -86,6 +91,46 @@ public class HouseItem extends BaseDao {
 
     public void setFullItemExampleImage(String fullItemExampleImage) {
         this.fullItemExampleImage = fullItemExampleImage;
+    }
+    
+    public String getFullItemExampleImage1() {
+        return fullItemExampleImage1;
+    }
+
+    public void setFullItemExampleImage1(String fullItemExampleImage1) {
+        this.fullItemExampleImage1 = fullItemExampleImage1;
+    }
+    
+    public String getFullItemExampleImage2() {
+        return fullItemExampleImage2;
+    }
+
+    public void setFullItemExampleImage2(String fullItemExampleImage2) {
+        this.fullItemExampleImage2 = fullItemExampleImage2;
+    }
+    
+    public String getFullItemExampleImage3() {
+        return fullItemExampleImage3;
+    }
+
+    public void setFullItemExampleImage3(String fullItemExampleImage3) {
+        this.fullItemExampleImage3 = fullItemExampleImage3;
+    }
+    
+    public String getFullItemExampleImage4() {
+        return fullItemExampleImage4;
+    }
+
+    public void setFullItemExampleImage4(String fullItemExampleImage4) {
+        this.fullItemExampleImage4 = fullItemExampleImage4;
+    }
+    
+    public String getFullItemExampleImage5() {
+        return fullItemExampleImage5;
+    }
+
+    public void setFullItemExampleImage5(String fullItemExampleImage5) {
+        this.fullItemExampleImage5 = fullItemExampleImage5;
     }
 
     public String getComment() {
@@ -233,7 +278,9 @@ public String toString(IItemCrackDao iItemCrackDao) {
 		}
 	
     	if(comment.length() != 0) {
-    		sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + comment + "（图"+ ICreatePDFServiceImpl.textNum++ +"）。") ;
+//    		sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + comment + "（图"+ ICreatePDFServiceImpl.textNum++ +"）。") ;
+    		sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + comment + "（见下图）。") ;
+    		ICreatePDFServiceImpl.textNum++;
     		return sb.toString();
     	}
 		
