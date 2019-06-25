@@ -1,7 +1,7 @@
 $(function () {
-    itemCrackTypeChange('00');
-    itemWallDamageChange('00');
-    itemDirectionChange('00');
+//    itemCrackTypeChange('00');
+//    itemWallDamageChange('00');
+//    itemDirectionChange('00');
 
     layui.use('laydate', function() {
         var laydate = layui.laydate;
@@ -259,9 +259,58 @@ function itemWallDamageChangeOne(crackNum) {
 }
 
 layui.use(['form', 'upload'], function () {
-    var $ = layui.jquery,
-        upload = layui.upload;
+    var $ = layui.jquery
+        ,upload = layui.upload
+        ,form = layui.form;
+    
+//    itemCrackTypeChange('00');
+//    itemWallDamageChange('00');
+//    itemDirectionChange('00');
+    
+    form.on('radio()', function(data){
+    	
+    	  console.log(data.elem); //得到radio原始DOM对象
+    	  console.log(data.value); //被点击的radio的value值
+    	  
+    	  //选择非墙面,方向隐藏
+          if (data.elem.title == '天棚' || data.elem.title == '地面') {
+              $(data.elem).parent('div').parent('div').next().find("input").attr('disabled','');
+              $(data.elem).parent('div').parent('div').next().find("input").prop('checked', false);
+              form.render('radio');
+          } else if (data.elem.title == '墙面'){
+        	  $(data.elem).parent('div').parent('div').next().find("input").removeAttr('disabled');
+        	  form.render('radio');
+          }
+          
+        //选择构件,墙面隐藏,显示所有裂缝性质
+          if (data.elem.title == '构件') {
+              $(data.elem).parent('div').parent('div').next().find("input").attr('disabled','');
+              $(data.elem).parent('div').parent('div').next().find("input").prop('checked', false);
+              //显示所有裂缝性质
+              $(data.elem).parent('div').parent('div').next().next().find("input").removeAttr('disabled');
+              form.render('radio');
+          } else if (data.elem.title == '粉刷层'){
+        	  $(data.elem).parent('div').parent('div').next().find("input").removeAttr('disabled');
+        	  form.render('radio');
+          }
+          
+    	  //选择粉刷层,龟裂,隐藏长度和方向|选择粉刷层,空鼓,隐藏方向
+          if (data.elem.title == '龟裂') {
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().find("input").attr('disabled','');
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().next().find("input").attr('disabled','');
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().find("input").prop('checked', false);
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().next().find("input").val("");
+        	  
+              form.render('radio');
+          } else if (data.elem.title == '空鼓') {
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().find("input").attr('disabled','');
 
+        	  $(data.elem).parent('div').parent('div').next().children('div').children('div').first().next().find("input").removeAttr('disabled');
+        	  
+              form.render('radio');
+          }
+    	});  
+    
     picupload("#exampleImage00", "#crackPreview00");
     picupload("#fullExampleImage00", "#itemPreview00");
     picupload("#fullExampleImage01", "#itemPreview01");
@@ -317,9 +366,9 @@ layui.use(['form', 'upload'], function () {
         itemContent += '构件位置';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="0" >墙面';
-        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="1" >天棚';
-        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="2" >地面';
+        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="0" title="墙面">';
+        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="1" title="天棚">';
+        itemContent += '<input type="radio" name="itemLocation' + sort + '" value="2" title="地面">';
         itemContent += '</div>';
         itemContent += '</div>';
 
@@ -328,10 +377,10 @@ layui.use(['form', 'upload'], function () {
         itemContent += '构件方向';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="0" >东';
-        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="1" >南';
-        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="2" >西';
-        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="3" >北';
+        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="0" title="东">';
+        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="1" title="南">';
+        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="2" title="西">';
+        itemContent += '<input type="radio" name="itemDirection' + sort + '" value="3" title="北">';
         itemContent += '</div>';
         itemContent += '</div>';
 
@@ -340,8 +389,8 @@ layui.use(['form', 'upload'], function () {
         itemContent += '裂缝性质';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="itemCrackType' + sort + '" value="0" >粉刷层';
-        itemContent += '<input type="radio" name="itemCrackType' + sort + '" value="1" >构件';
+        itemContent += '<input type="radio" name="itemCrackType' + sort + '" value="0" title="粉刷层">';
+        itemContent += '<input type="radio" name="itemCrackType' + sort + '" value="1" title="构件">';
         itemContent += '</div>';
         itemContent += '</div>';
 
@@ -350,8 +399,8 @@ layui.use(['form', 'upload'], function () {
         itemContent += '墙面';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="itemWallDamage' + sort + '" value="0" >龟裂';
-        itemContent += '<input type="radio" name="itemWallDamage' + sort + '" value="1" >空鼓';
+        itemContent += '<input type="radio" name="itemWallDamage' + sort + '" value="0" title="龟裂">';
+        itemContent += '<input type="radio" name="itemWallDamage' + sort + '" value="1" title="空鼓">';
         itemContent += '</div>';
         itemContent += '</div>';
         
@@ -364,10 +413,10 @@ layui.use(['form', 'upload'], function () {
         itemContent += '裂缝方向';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="0" >斜';
-        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="1" >竖';
-        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="2" >水';
-        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="3" >不规则';
+        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="0" title="斜">';
+        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="1" title="竖">';
+        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="2" title="水">';
+        itemContent += '<input type="radio" name="crackDirection' + sort + '0" value="3" title="不规则">';
         itemContent += '</div>';
         itemContent += '</div>';
 
@@ -522,7 +571,7 @@ layui.use(['form', 'upload'], function () {
         itemContent += '<button onclick="deleteProjectItem(' + sort + ')">刪除此构件项</button>';
         itemContent += '</div>';
         itemContent += '</div>';
-
+        
         return itemContent;
     }
 
@@ -536,6 +585,7 @@ layui.use(['form', 'upload'], function () {
         var item = buildAddItem();
         var projectItemInfoChild = $("#projectItemInfo").children("div");
         $(item).insertBefore(projectItemInfoChild.eq(projectItemInfoChild.length - 1));
+        form.render();
         picupload("#fullExampleImage" + sort + "0", "#itemPreview" + sort + "0");
         picupload("#fullExampleImage" + sort + "1", "#itemPreview" + sort + "1");
         picupload("#fullExampleImage" + sort + "2", "#itemPreview" + sort + "2");
@@ -543,9 +593,10 @@ layui.use(['form', 'upload'], function () {
         picupload("#fullExampleImage" + sort + "4", "#itemPreview" + sort + "4");
         picupload("#fullExampleImage" + sort + "5", "#itemPreview" + sort + "5");
         picupload("#exampleImage" + sort + "0", "#crackPreview" + sort + "0");
-        itemCrackTypeChange(sort + "0");
-        itemWallDamageChange(sort + "0");
-        itemDirectionChange(sort + "0");
+//        itemCrackTypeChange(sort + "0");
+//        itemWallDamageChange(sort + "0");
+//        itemDirectionChange(sort + "0");
+        
 }
 
     window.addCrackItem =  function(itemNum) {
@@ -577,10 +628,10 @@ layui.use(['form', 'upload'], function () {
         itemContent += '裂缝方向';
         itemContent += '</div>';
         itemContent += '<div class="layui-col-md10">';
-        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="0" >斜';
-        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="1" >竖';
-        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="2" >水';
-        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="3" >不规则';
+        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="0" title="斜">';
+        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="1" title="竖">';
+        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="2" title="水">';
+        itemContent += '<input type="radio" name="crackDirection' + crackNum + '" value="3" title="不规则">';
         itemContent += '</div>';
         itemContent += '</div>';
 
@@ -629,11 +680,13 @@ layui.use(['form', 'upload'], function () {
 
         $(itemContent).insertBefore(lastSecondDiv.last());
       //  lastSecondDiv.eq(lastSecondDiv.length - 2).find('input').eq(0).val(crackNum);
-        itemCrackTypeChange(crackNum);
-        itemWallDamageChange(crackNum);
-        itemDirectionChange(crackNum);
-        itemWallDamageChangeOne(crackNum);
+        form.render();
+//        itemCrackTypeChange(crackNum);
+//        itemWallDamageChange(crackNum);
+//        itemDirectionChange(crackNum);
+//        itemWallDamageChangeOne(crackNum);
         picupload("#exampleImage" + crackNum, "#crackPreview" + crackNum);
+        
     }
 })
 
@@ -642,6 +695,10 @@ function createSign(){
         type: 1,
         shade: '0.3',
         area: ['602x', '320px'],
+        scrollbar: false,
+        fixed: false,
+        shade: [0.8, '#393D49'],
+//        shadeClose:true,
         title: '生成签名', //不显示标题
         content: $('#createSign'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
     });

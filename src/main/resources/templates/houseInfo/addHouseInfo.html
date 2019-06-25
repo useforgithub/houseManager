@@ -17,126 +17,102 @@
 		<div>
 			<div id="head"></div>
 			<div id="body">
+				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				  <legend>入户收集表</legend>
+				</fieldset>
 				<div id="projectMainInfio" class="layui-container">
-					<div class="layui-row">
-						<div class="layui-col-md2">
-							<div style="width: 30%; display: inline-block;">工程名称</div>
+					<div class="layui-row layui-form-item layui-form-pane">
+						
+						<div class="layui-col-md5 layui-inline">
+							<label class="layui-form-label">工程名称</label>
+							<div class="layui-input-inline">
+								<input id="projectNmae"  style="width: 350px;" class="layui-input" placeholder="请输入工程名称" />
+							</div>
 						</div>
-
-						<div class="layui-col-md4">
-							<div style="display: inline-block;width: 90%"><input id="projectNmae" style="width: 100%;" class="layui-input" placeholder="请输入工程名称" /></div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">门牌号</label>
+							<div class="layui-input-inline">
+									<input id="houseNum" class="layui-input" style="width: 100%;" placeholder="请输入门牌号" />
+							</div>
 						</div>
-
-						<div class="layui-col-md2">
-							<div style="width: 30%;display: inline-block;vertical-align: top;">门牌号</div>
+						
+						<div class="layui-inline">
+							<label class="layui-form-label">检测日期</label>
+							<div class="layui-input-inline">
+									<input id="checkDate" class="layui-input" style="width: 100%;" placeholder="请选择检测日期" />
+							</div>
 						</div>
-
-						<div class="layui-col-md4">
-							<div style="display: inline-block;width: 100%"><input id="houseNum" class="layui-input" style="width: 100%;" placeholder="请输入门牌号" /></div>
-						</div>
-					</div>
-
-					<div class="layui-row" style="margin-top: 10px;">
-						<div class="layui-col-md2">
-							<div style="width: 30%; display: inline-block;">检测日期</div>
-						</div>
-						<div class="layui-col-md4">
-							<div style="display: inline-block;width: 90%"><input id="checkDate" class="layui-input" style="width: 100%;" placeholder="请选择检测日期" /></div>
-						</div>
-						<!--<div class="layui-col-md2">
-							<div style="width: 30%;display: inline-block;vertical-align: top;">户主姓名</div>
-						</div>
-						<div class="layui-col-md4">
-							<div style="display: inline-block;width: 100%"><input id="masterName" class="layui-input" style="width: 100%;" placeholder="请输入户主姓名" /></div>
-						</div>-->
 					</div>
 				</div>
-				<div id="projectItemInfo" class="layui-container">
+				<div id="projectItemInfo" class="layui-container layui-form layui-form-pane">
 					<div id="item0" class="layui-row" style="margin-top: 25px;">
 						<input type="hidden" value="0" />
-						<div class="layui-row">
-							<div class="layui-col-md2">
-								构件序号
-							</div>
-							<div class="layui-col-md10">
-								<input id="serialNum0" class="layui-input" style="width: 98.5%;" />
+						<div class="layui-form-item">
+							<label class="layui-form-label">构件序号</label>
+							<div class="layui-input-block">
+								<input id="serialNum0" class="layui-input"/>
 							</div>
 						</div>
-						<div class="layui-row">
-							<div class="layui-col-md2">
-								构件位置
-							</div>
-							<div class="layui-col-md10">
-								<input type="radio" name="itemLocation0" value="0">墙面
-								<input type="radio" name="itemLocation0" value="1">天棚
-								<input type="radio" name="itemLocation0" value="2">地面
+						<div class="layui-form-item" pane>
+							<label class="layui-form-label">构件位置</label>
+							<div class="layui-input-block">
+								<input type="radio" name="itemLocation0" value="0" title="墙面">
+								<input type="radio" name="itemLocation0" value="1" title="天棚">
+								<input type="radio" name="itemLocation0" value="2" title="地面" >
 							</div>
 						</div>
-						<div class="layui-row">
-							<div class="layui-col-md2">
-								构件方向
-							</div>
-							<div class="layui-col-md10">
-								<input type="radio" name="itemDirection0" value="0">东
-								<input type="radio" name="itemDirection0" value="1">南
-								<input type="radio" name="itemDirection0" value="2">西
-								<input type="radio" name="itemDirection0" value="3">北
+						<div class="layui-form-item" pane>
+							<label class="layui-form-label">构件方向</label>
+							<div class="layui-input-block">
+								<input type="radio" name="itemDirection0" value="0" title="东">
+								<input type="radio" name="itemDirection0" value="1" title="南">
+								<input type="radio" name="itemDirection0" value="2" title="西">
+								<input type="radio" name="itemDirection0" value="3" title="北">
 							</div>
 						</div>
-						<div class="layui-row">
-							<div class="layui-col-md2">
-								裂缝性质
-							</div>
-							<div class="layui-col-md10">
-								<input type="radio" name="itemCrackType0" value="0">粉刷层
-								<input type="radio" name="itemCrackType0" value="1">构件
+						<div class="layui-form-item" pane>
+							<label class="layui-form-label">裂缝性质</label>
+							<div class="layui-input-block">
+								<input type="radio" name="itemCrackType0" value="0" title="粉刷层">
+								<input type="radio" name="itemCrackType0" value="1" title="构件">
 							</div>
 						</div>
-						<div class="layui-row">
-							<div class="layui-col-md2">
-								墙面
-							</div>
-							<div class="layui-col-md10">
-								<input type="radio" name="itemWallDamage0" value="0">龟裂
-								<input type="radio" name="itemWallDamage0" value="1">空鼓
+						<div class="layui-form-item" pane>
+							<label class="layui-form-label">墙面</label>
+							<div class="layui-input-block">
+								<input type="radio" name="itemWallDamage0" value="0" title="龟裂">
+								<input type="radio" name="itemWallDamage0" value="1" title="空鼓">
 							</div>
 						</div>
 
-						<div class="layui-row crack_item_style">
+						<div class="layui-form-item">
 							<div id="crackItem00" class="layui-row">
 								<input type="hidden" value="0" />
 								<div class="layui-row">
-									<div class="layui-col-md2">
-										裂缝方向
-									</div>
-									<div class="layui-col-md10">
-										<input type="radio" name="crackDirection00" value="0">斜
-										<input type="radio" name="crackDirection00" value="1">竖
-										<input type="radio" name="crackDirection00" value="2">水
-										<input type="radio" name="crackDirection00" value="3">不规则
+									<label class="layui-form-label">裂缝方向</label>
+									<div class="layui-input-block">
+										<input type="radio" name="crackDirection00" value="0" title="斜">
+										<input type="radio" name="crackDirection00" value="1" title="竖">
+										<input type="radio" name="crackDirection00" value="2" title="水">
+										<input type="radio" name="crackDirection00" value="3" title="不规则">
 									</div>
 								</div>
 								<div class="layui-row">
-									<div class="layui-col-md2">
-										最大长度mm
-									</div>
-									<div class="layui-col-md10">
+									<label class="layui-form-label">最大长度mm</label>
+									<div class="layui-input-block">
 										<input id="maxLength00" style="width: 98.5%;" />
 									</div>
 								</div>
 								<div class="layui-row">
-									<div class="layui-col-md2">
-										最大宽度mm
-									</div>
-									<div class="layui-col-md10">
+									<label class="layui-form-label">最大宽度mm</label>
+									<div class="layui-input-block">
 										<input id="maxWidth00" style="width: 98.5%;" />
 									</div>
 								</div>
 								<div class="layui-row">
-									<div class="layui-col-md2">
-										示意图
-									</div>
-									<div class="layui-col-md10">
+									<label class="layui-form-label">示意图</label>
+									<div class="layui-input-block">
 										<div style="border: #C2C2C2 1px solid;width: 100%;color: #C2C2C2;">
 											<div id="exampleImage00" style="display: inline-block;text-align: center;border: #C2C2C2 1px solid;margin-top: 5px;margin-bottom: 5px;">
 												<input type="hidden" id="exampleImagePath00" value="" >
@@ -161,10 +137,8 @@
 							</div>
 						</div>
 						<div class="layui-row">
-							<div class="layui-col-md2">
-								全景图
-							</div>
-							<div class="layui-col-md10">
+							<label class="layui-form-label">全景图</label>
+							<div class="layui-input-block">
 							<div style="border: #C2C2C2 1px solid;width: 100%;color: #C2C2C2;">
 								
 								<div class="layui-col-md4">
