@@ -432,6 +432,7 @@ layui.use(['form', 'upload'], function () {
                     window.picupload('#fullExampleImage' + j + "3", '#itemPreview' + j + "3");
                     window.picupload('#fullExampleImage' + j + "4", '#itemPreview' + j + "4");
                     window.picupload('#fullExampleImage' + j + "5", '#itemPreview' + j + "5");
+                    itemDirectionChange(j + '' + "0");
                     var currHouseItem = data.houseItemVoList[j];
                     if (currHouseItem.itemCrackVoList != null) {
                         for (var k = 0; k < currHouseItem.itemCrackVoList.length; k++) {
@@ -439,7 +440,7 @@ layui.use(['form', 'upload'], function () {
                             window.picupload('#exampleImage' + j + k, '#crackPreview' + j + k);
                             itemCrackTypeChange(j + '' + k);
                             itemWallDamageChange(j + '' + k);
-                            itemDirectionChange(j + '' + k);
+//                            itemDirectionChange(j + '' + k);
                             itemWallDamageChangeOne(j + '' + k);
                         }
                     }

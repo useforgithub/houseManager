@@ -647,7 +647,7 @@ layui.use(['form', 'upload'], function () {
 function createSign(){
     layer.open({
         type: 1,
-        shade: '0.3',
+//        shade: '0.3',
         area: ['602x', '320px'],
         scrollbar: false,
 //        fixed: false,

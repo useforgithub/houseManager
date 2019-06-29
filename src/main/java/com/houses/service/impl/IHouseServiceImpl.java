@@ -36,14 +36,14 @@ public class IHouseServiceImpl implements IHouseService {
     @Autowired
     IHouseMainInfoDao iHouseMainInfoDao;
 
-    private static final String IMAGE_SUFFIX = "image.jpg";
+//    private static final String IMAGE_SUFFIX = "image.jpg";
 
-    private static final String PNG_SUFFIX = "signature.png";
+//    private static final String PNG_SUFFIX = "signature.png";
 
     @Autowired
     IItemCrackDao iItemCrackDao;
 
-    private static final String TEMP_PATH = System.getProperty("java.io.tmpdir") + "/" + "temp" + "/";
+//    private static final String TEMP_PATH = System.getProperty("java.io.tmpdir") + "/" + "temp" + "/";
 
     @Value("${house.config.upload}")
     private String UPLOAD_PATH;
@@ -233,87 +233,61 @@ public class IHouseServiceImpl implements IHouseService {
                 //图片路径不一致，复制图片
                 if (fullImage.isFile()) {
                     if (!currItem.getFullItemExampleImage().equals(UPLOAD_PATH + "/" + fullImage.getName())) {
-//                        FileUtils.copyFile(fullImage, new File(UPLOAD_PATH + "/" + fullImage.getName()));
-//                        currItem.setFullItemExampleImage(UPLOAD_PATH + "/" + fullImage.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-//                        System.out.println("原图片路径："+currItem.getFullItemExampleImage());
-//                    	System.out.println("点击保存后的图片路径："+UPLOAD_PATH + "/" + fullImage.getName());  
-                        FileUtils.copyFile(fullImage, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage, new File(UPLOAD_PATH + "/" + fullImage.getName()));
                         FileUtils.deleteQuietly(fullImage);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage()));
-                        currItem.setFullItemExampleImage(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage(UPLOAD_PATH + "/" + fullImage.getName());
                     }
                 }
                 
                 if (fullImage1.isFile()) {
                     if (!currItem.getFullItemExampleImage1().equals(UPLOAD_PATH + "/" + fullImage1.getName())) {
-//                        FileUtils.copyFile(fullImage1, new File(UPLOAD_PATH + "/" + fullImage1.getName()));
-//                        currItem.setFullItemExampleImage1(UPLOAD_PATH + "/" + fullImage1.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-                        FileUtils.copyFile(fullImage1, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage1, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage1, new File(UPLOAD_PATH + "/" + fullImage1.getName()));
                         FileUtils.deleteQuietly(fullImage1);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage1()));
-                        currItem.setFullItemExampleImage1(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage1(UPLOAD_PATH + "/" + fullImage1.getName());
                     }
                 }
                 
                 if (fullImage2.isFile()) {
                     if (!currItem.getFullItemExampleImage2().equals(UPLOAD_PATH + "/" + fullImage2.getName())) {
-//                        FileUtils.copyFile(fullImage2, new File(UPLOAD_PATH + "/" + fullImage2.getName()));
-//                        currItem.setFullItemExampleImage2(UPLOAD_PATH + "/" + fullImage2.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-                        FileUtils.copyFile(fullImage2, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage2, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage2, new File(UPLOAD_PATH + "/" + fullImage2.getName()));
                         FileUtils.deleteQuietly(fullImage2);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage2()));
-                        currItem.setFullItemExampleImage2(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage2(UPLOAD_PATH + "/" + fullImage2.getName());
                     }
                 }
                 
                 if (fullImage3.isFile()) {
                     if (!currItem.getFullItemExampleImage3().equals(UPLOAD_PATH + "/" + fullImage3.getName())) {
-//                        FileUtils.copyFile(fullImage3, new File(UPLOAD_PATH + "/" + fullImage3.getName()));
-//                        currItem.setFullItemExampleImage3(UPLOAD_PATH + "/" + fullImage3.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-                        FileUtils.copyFile(fullImage3, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage3, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage3, new File(UPLOAD_PATH + "/" + fullImage3.getName()));
                         FileUtils.deleteQuietly(fullImage3);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage3()));
-                        currItem.setFullItemExampleImage3(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage3(UPLOAD_PATH + "/" + fullImage3.getName());
                     }
                 }
                 
                 if (fullImage4.isFile()) {
                     if (!currItem.getFullItemExampleImage4().equals(UPLOAD_PATH + "/" + fullImage4.getName())) {
-//                        FileUtils.copyFile(fullImage4, new File(UPLOAD_PATH + "/" + fullImage4.getName()));
-//                        currItem.setFullItemExampleImage4(UPLOAD_PATH + "/" + fullImage4.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-                        FileUtils.copyFile(fullImage4, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage4, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage4, new File(UPLOAD_PATH + "/" + fullImage4.getName()));
                         FileUtils.deleteQuietly(fullImage4);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage4()));
-                        currItem.setFullItemExampleImage4(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage4(UPLOAD_PATH + "/" + fullImage4.getName());
                     }
                 }
                 
                 if (fullImage5.isFile()) {
                     if (!currItem.getFullItemExampleImage5().equals(UPLOAD_PATH + "/" + fullImage5.getName())) {
-//                        FileUtils.copyFile(fullImage5, new File(UPLOAD_PATH + "/" + fullImage5.getName()));
-//                        currItem.setFullItemExampleImage5(UPLOAD_PATH + "/" + fullImage5.getName());
-//                    } else {
-                        //路径一致，换个马甲，删除原来的图片
-                        long time = System.currentTimeMillis();
-                        FileUtils.copyFile(fullImage5, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                        long time = System.currentTimeMillis() + new Random().nextLong();
+//                        FileUtils.copyFile(fullImage5, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                        FileUtils.copyFile(fullImage5, new File(UPLOAD_PATH + "/" + fullImage5.getName()));
                         FileUtils.deleteQuietly(fullImage5);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currItem.getFullItemExampleImage5()));
-                        currItem.setFullItemExampleImage5(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                        currItem.setFullItemExampleImage5(UPLOAD_PATH + "/" + fullImage5.getName());
                     }
                 }
             } catch (IOException e) {
@@ -347,15 +321,11 @@ public class IHouseServiceImpl implements IHouseService {
                 try {
                     if (exampleImage.isFile()) {
                         if (!currCrack.getExampleImage().equals(UPLOAD_PATH + "/" + exampleImage.getName())) {
-//                            FileUtils.copyFile(exampleImage, new File(UPLOAD_PATH + "/" + exampleImage.getName()));
-//                            currCrack.setExampleImage(UPLOAD_PATH + "/" + exampleImage.getName());
-//                        } else {
-                        	
-                            long time = System.currentTimeMillis();
-                            FileUtils.copyFile(exampleImage, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+//                            long time = System.currentTimeMillis() + new Random().nextLong();
+//                            FileUtils.copyFile(exampleImage, new File(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX));
+                            FileUtils.copyFile(exampleImage, new File(UPLOAD_PATH + "/" + exampleImage.getName()));
                             FileUtils.deleteQuietly(exampleImage);
-//待测试，删除原图片                        FileUtils.deleteQuietly(new File(currCrack.getExampleImage()));
-                            currCrack.setExampleImage(UPLOAD_PATH + "/" + time + IMAGE_SUFFIX);
+                            currCrack.setExampleImage(UPLOAD_PATH + "/" + exampleImage.getName());
                         }
                     }
                 } catch (IOException e) {
