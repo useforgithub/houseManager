@@ -18,7 +18,14 @@ layui.use(['form', 'upload'], function () {
             done: function (res) {
                 if (res.code == "000000") {
                     $(id).find('input').eq(0).val(res.data);
+                }else{
+                	alert("图片上传失败，请重新上传");
+                	$(pic).children().remove();
                 }
+            },
+            error: function(index, upload){
+            	alert("图片上传超时，请检查网络并重新上传");
+            	$(pic).children().remove();
             }
         });
     }

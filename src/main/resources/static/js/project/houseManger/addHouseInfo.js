@@ -287,7 +287,14 @@ layui.use(['form', 'upload'], function () {
             done: function (res) {
                 if (res.code == "000000") {
                     $(id).find('input').eq(0).val(res.data);
+                }else{
+                	alert("图片上传失败，请重新上传");
+                	$(pic).children().remove();
                 }
+            },
+            error: function(index, upload){
+            	alert("图片上传超时，请检查网络并重新上传");
+            	$(pic).children().remove();
             }
         });
     }
@@ -642,6 +649,10 @@ function createSign(){
         type: 1,
         shade: '0.3',
         area: ['602x', '320px'],
+        scrollbar: false,
+//        fixed: false,
+        shade: [0.8, '#393D49'],
+//        shadeClose:true,
         title: '生成签名', //不显示标题
         content: $('#createSign'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
     });
