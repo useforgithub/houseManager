@@ -3,9 +3,11 @@ package com.houses.controller;
 import com.houses.common.dto.PageDto;
 import com.houses.common.dto.ResultDto;
 import com.houses.common.model.HouseMainInfo;
+import com.houses.common.model.User;
 import com.houses.common.vo.HouseMainInfoVo;
 import com.houses.service.ICreatePDFService;
 import com.houses.service.IHouseService;
+import com.houses.user.UserService;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Image;
 
@@ -21,6 +23,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +33,8 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
@@ -61,17 +66,102 @@ public class HouseController {
 
     @Autowired
     ICreatePDFService iCreatePDFService;
-
+    
+    @Autowired
+    UserService userService;
+    
+    @RequestMapping(value = "/home")
+    public String getHome() {
+        return "home.html";
+    }
+    
     @RequestMapping(value = "/addHouse")
     public String getHouseInfo() {
         return "houseInfo/addHouseInfo.html";
     }
-
-    @RequestMapping(value = "/index")
-    public String toMainPage() {
-        return "index.html";
+    
+    @GetMapping(value = "/login")
+    public String getLogin(HttpServletRequest request) {
+    	
+    	Object user = request.getSession().getAttribute("user");
+    	
+        if (user == null) {
+            return "login.html";
+        }
+        return "home.html";
+    }
+    
+    @PostMapping(value = "/login")
+    public String loginPost(Model model,
+                            @ModelAttribute(value = "user") User user,
+                            HttpServletResponse response,
+                            HttpSession session) {
+        String result = userService.login(user);
+        if (result.equals("登陆成功")) {
+           //session是作为用户登录信息保存的存在
+            session.setAttribute("user",user);
+        } else {
+        	return "/login.html";
+        }
+        model.addAttribute("result", result);
+        return "/home.html";
     }
 
+    @GetMapping(value = "/logout")
+    public void logout(HttpSession session) {
+        //从session中删除user属性，用户退出登录
+        session.removeAttribute("user");
+    }
+    
+    @GetMapping(value = "/register")
+    public String getRegister() {
+        return "register.html";
+    }
+    
+    @PostMapping(value = "/register")
+    @ResponseBody
+    public int registerPost(@RequestBody User user) {
+
+    	int result = userService.register(user);
+
+        return result;
+    }
+    
+    @GetMapping(value = "/changePass")
+    public String getChangePass() {
+        return "changePass.html";
+    }
+    
+    @PostMapping(value = "/changePass")
+    @ResponseBody
+    public int changePass(@RequestBody User user) {
+    	
+    	int result = userService.changePass(user);
+
+        return result;
+    }
+
+    @GetMapping(value = "/showUsers")
+    public String showUsers() {
+        return "showUsers.html";
+    }
+    
+    @RequestMapping(value = "/queryUsers")
+    @ResponseBody
+    public PageDto<List<User>> queryUsers(User user) {
+        PageDto<List<User>> pageDto;
+        try {
+        	UserService userService = new UserService();
+            pageDto = userService.queryUsers(user);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            pageDto = new PageDto<>();
+            pageDto.setCount(0);
+            pageDto.setData(new ArrayList<>());
+        }
+        return pageDto;
+    }
+    
     @RequestMapping(value = "/showHouses")
     public String showHouses() {
         return "houseInfo/showHouses.html";
