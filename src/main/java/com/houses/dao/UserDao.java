@@ -2,6 +2,7 @@ package com.houses.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -24,11 +25,14 @@ public interface UserDao {
 	@Insert("update admin set pass=#{pass} where user=#{user}")
 	boolean changePass(User user);
 
-	@Select("SELECT id,user FROM admin order by id desc limit #{start}, #{limit}")
+	@Select("SELECT id,user FROM admin order by id limit #{start}, #{limit}")
 	List<User> queryUsersPaged(User user);
 
 	@Select("select count(*) from admin")
 	Integer queryUsersCount();
+	
+	@Delete("delete from admin where id=#{id}")
+	boolean deleteUserById(int id);
 
 
 

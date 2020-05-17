@@ -151,7 +151,6 @@ public class HouseController {
     public PageDto<List<User>> queryUsers(User user) {
         PageDto<List<User>> pageDto;
         try {
-        	UserService userService = new UserService();
             pageDto = userService.queryUsers(user);
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -160,6 +159,15 @@ public class HouseController {
             pageDto.setData(new ArrayList<>());
         }
         return pageDto;
+    }
+    
+    @RequestMapping(value = "/deleteUserById")
+    @ResponseBody
+    public int deleteUserById(@RequestBody User user) {
+    	
+    	int result = userService.deleteUserById(user.getId());
+
+        return result;
     }
     
     @RequestMapping(value = "/showHouses")

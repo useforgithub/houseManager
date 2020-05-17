@@ -80,4 +80,14 @@ public class UserService {
 		pageDto.setData(userVoList);
 		return pageDto;
 	}
+
+	public int deleteUserById(int id) {
+//      System.out.println(user.getUser());
+		if(userDao.deleteUserById(id)) {
+			return 0;
+		}else {
+			return 1;
+		}
+
+	}
 }

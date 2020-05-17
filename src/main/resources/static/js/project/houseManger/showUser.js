@@ -23,25 +23,26 @@ layui.use('table', function(){
     table.on('tool(demo)', function(obj){
         var data = obj.data;
         if(obj.event === 'del'){
-            layer.confirm('确认删除此房屋信息！', {
+            layer.confirm('确认删除！', {
                 btn: ['确认','取消'] //按钮
             }, function(){
-                var idArr = [];
-                idArr.push(data.id);
+            	var obj = new Object();
+                obj.id = data.id;
                 $.ajax({
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    url:'../houses/deleteHouseInfoByIds',
+                    url:'../houses/deleteUserById',
                     type:'post',
-                    data : JSON.stringify(idArr),
+                    data : JSON.stringify(obj),
                     success:function(data){
-                        if (data.code == '000000') {
-                            layer.msg(data.data);
+
+                        if (data == '0') {
+                            layer.msg("删除成功");
                             currTable.reload();
                         }else {
-                            layer.msg(data.info);
+                            layer.msg("删除失败");
                         }
                     }
                 })
