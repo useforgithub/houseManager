@@ -307,6 +307,11 @@ public String toString(IItemCrackDao iItemCrackDao) {
     			Double crackLength = ItemCrackVo.get(0).getMaxLength();
     			sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + itemSerial + itemLocationText + itemCrackTypeText + "裂缝一道,裂缝测点宽度为" + crackWidth + "mm,长度为"+crackLength+"mm（图" + ICreatePDFServiceImpl.textNum++ + "）。") ;
     			return sb.toString();
+    		}else {
+    			List<ItemCrackVo> ItemCrackVo = iItemCrackDao.queryCrackListById(id);
+    			Double crackWidth = ItemCrackVo.get(0).getMaxWidth();
+    			sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + itemSerial + itemLocationText + itemCrackTypeText + "裂缝一道,裂缝测点宽度为" + crackWidth + "mm（图" + ICreatePDFServiceImpl.textNum++ + "）。") ;
+    			return sb.toString();
     		}
     	}
 		
