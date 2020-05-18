@@ -11,7 +11,6 @@ import com.houses.common.dto.PageDto;
 import com.houses.common.model.User;
 import com.houses.common.vo.HouseMainInfoVo;
 import com.houses.dao.UserDao;
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Service
 public class UserService {
