@@ -118,9 +118,10 @@ public class HouseController {
     }
 
     @GetMapping(value = "/logout")
-    public void logout(HttpSession session) {
+    public String logout(HttpSession session) {
         //从session中删除user属性，用户退出登录
         session.removeAttribute("user");
+        return "/login.html";
     }
     
     @GetMapping(value = "/register")
