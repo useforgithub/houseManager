@@ -16,6 +16,10 @@ public interface UserDao {
 	// 根据user获得一个User类
 	@Select("select * from admin where user=#{user}")
 	User getUser(String user);
+	
+	// 根据id获得一个username
+	@Select("select user from admin where id=#{id}")
+	String getUserById(int id);
 
 	// 插入一个User
 	@Insert("insert into admin (user,pass) values(#{user},#{pass})")

@@ -14,9 +14,9 @@ layui.use('table', function(){
         },
         limits:[10,20,50]
         ,cols: [[
-            {field:'id', width:'10%', title: 'ID'}
-            ,{field:'user', width:'20%', title: '用户名'}, 
-            ,{ width:63, align:'20%', toolbar: '#barDemo'}
+            {field:'id', width:'20%', title: 'ID'}
+            ,{field:'user', width:'40%', title: '用户名'}, 
+            ,{ width:63, align:'40%', toolbar: '#barDemo'}
         ]]
     });
 
@@ -41,7 +41,9 @@ layui.use('table', function(){
                         if (data == '0') {
                             layer.msg("删除成功");
                             currTable.reload();
-                        }else {
+                        }else if ( data == '3' ) {
+                        	layer.msg("超级用户，无法删除");
+                        } else {
                             layer.msg("删除失败");
                         }
                     }

@@ -10,6 +10,7 @@ import com.houses.service.IHouseService;
 import com.houses.user.UserService;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -70,6 +71,11 @@ public class HouseController {
     @Autowired
     UserService userService;
     
+    @RequestMapping(value = "/")
+    public String getIndex() {
+        return "userHome.html";
+    }
+    
     @RequestMapping(value = "/home")
     public String getHome() {
         return "home.html";
@@ -100,11 +106,16 @@ public class HouseController {
         if (result.equals("登陆成功")) {
            //session是作为用户登录信息保存的存在
             session.setAttribute("user",user);
+            session.setAttribute("username",user.getUser());
+            model.addAttribute("result", result);
+            if (user.getUser().equals("superadmin")) {
+            	return "/home.html";
+            } else {
+            	return "/userHome.html";
+            }
         } else {
         	return "/login.html";
         }
-        model.addAttribute("result", result);
-        return "/home.html";
     }
 
     @GetMapping(value = "/logout")
@@ -120,11 +131,17 @@ public class HouseController {
     
     @PostMapping(value = "/register")
     @ResponseBody
-    public int registerPost(@RequestBody User user) {
+    public int registerPost(@RequestBody User user, HttpServletRequest request) {
 
-    	int result = userService.register(user);
+    	if(request.getSession().getAttribute("username").toString().equals("superadmin")) {
+        	int result = userService.register(user);
 
-        return result;
+            return result;
+    	} else {
+    		System.out.println(request.getSession().getAttribute("username").toString()+"用户无注册权限");
+    		return 2;
+    	}
+
     }
     
     @GetMapping(value = "/changePass")
@@ -148,26 +165,44 @@ public class HouseController {
     
     @RequestMapping(value = "/queryUsers")
     @ResponseBody
-    public PageDto<List<User>> queryUsers(User user) {
-        PageDto<List<User>> pageDto;
-        try {
-            pageDto = userService.queryUsers(user);
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            pageDto = new PageDto<>();
-            pageDto.setCount(0);
-            pageDto.setData(new ArrayList<>());
-        }
-        return pageDto;
+    public PageDto<List<User>> queryUsers(User user, HttpServletRequest request) {
+        
+    	if(request.getSession().getAttribute("username").toString().equals("superadmin")) {
+    		PageDto<List<User>> pageDto;
+            try {
+                pageDto = userService.queryUsers(user);
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+                pageDto = new PageDto<>();
+                pageDto.setCount(0);
+                pageDto.setData(new ArrayList<>());
+            }
+            return pageDto;
+    	} else {
+    		System.out.println(request.getSession().getAttribute("username").toString()+"用户无查看用户权限");
+    		return null;
+    	}
+    	
+    	
     }
     
-    @RequestMapping(value = "/deleteUserById")
+    @PostMapping(value = "/deleteUserById")
     @ResponseBody
-    public int deleteUserById(@RequestBody User user) {
+    public int deleteUserById(@RequestBody User user, HttpServletRequest request) {
     	
-    	int result = userService.deleteUserById(user.getId());
+    	if(request.getSession().getAttribute("username").toString().equals("superadmin")) {
+        	if(userService.getUserById(user.getId()).equals("superadmin")) {
+        		return 3;
+        	} else {
+        		int result = userService.deleteUserById(user.getId());
+                return result;
+        	}    
+    	} else {
+    		System.out.println(request.getSession().getAttribute("username").toString()+"用户无删除权限");
+    		return 2;
+    	}
+    	
 
-        return result;
     }
     
     @RequestMapping(value = "/showHouses")
