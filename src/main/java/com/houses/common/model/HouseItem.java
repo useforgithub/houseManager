@@ -284,7 +284,17 @@ public String toString(IItemCrackDao iItemCrackDao) {
     		return sb.toString();
     	}
 		
-		if(crackNumCount == 1 && itemLocation == 0) {
+		if(crackNumCount == 1 && itemLocation == 0 && itemCrackType == 0) {
+			List<ItemCrackVo> ItemCrackVo = iItemCrackDao.queryCrackListById(id);
+			Double crackWidth = ItemCrackVo.get(0).getMaxWidth();
+			sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + itemSerial + itemLocationText + itemDirectionText + itemCrackTypeText + "裂缝一道,裂缝测点宽度为" + crackWidth + "mm（图" + ICreatePDFServiceImpl.textNum++ + "）。") ;
+			return sb.toString();
+		}else if(crackNumCount == 1 && itemCrackType == 0) {
+			List<ItemCrackVo> ItemCrackVo = iItemCrackDao.queryCrackListById(id);
+			Double crackWidth = ItemCrackVo.get(0).getMaxWidth();
+			sb = new StringBuffer(ICreatePDFServiceImpl.wallNum++ + "、" + itemSerial + itemLocationText + itemCrackTypeText + "裂缝一道,裂缝测点宽度为" + crackWidth + "mm（图" + ICreatePDFServiceImpl.textNum++ + "）。") ;
+			return sb.toString();
+		}else if(crackNumCount == 1 && itemLocation == 0) {
 			List<ItemCrackVo> ItemCrackVo = iItemCrackDao.queryCrackListById(id);
 			Double crackWidth = ItemCrackVo.get(0).getMaxWidth();
 			Double crackLength = ItemCrackVo.get(0).getMaxLength();

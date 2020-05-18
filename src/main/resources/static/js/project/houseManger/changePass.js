@@ -1,5 +1,15 @@
 function changePass() {
-    var param = buildUserData();
+    
+    var pass = $('#pass').val();
+    
+    var repass = $('#repass').val();
+    
+    if(pass != repass){
+    	alert("密码不一致");
+    	return;
+    }
+	
+	var param = buildUserData();
 
     if (Object.keys(param).length == 0) {
         return;

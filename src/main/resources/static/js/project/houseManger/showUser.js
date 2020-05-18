@@ -16,7 +16,7 @@ layui.use('table', function(){
         ,cols: [[
             {field:'id', width:'10%', title: 'ID'}
             ,{field:'user', width:'20%', title: '用户名'}, 
-            ,{ width:178, align:'20%', toolbar: '#barDemo'}
+            ,{ width:63, align:'20%', toolbar: '#barDemo'}
         ]]
     });
 
