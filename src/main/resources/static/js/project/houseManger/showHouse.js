@@ -64,7 +64,9 @@ layui.use('table', function(){
         }else if (obj.event == 'edit') {
             var id = data.id + data.checkDate;
                 //标志为false 新增一个tab项
-            window.parent.btnTabAdd("../houses/editHouseInfo?houseId=" + data.id, id, "房屋详情");
+//            window.parent.btnTabAdd("../houses/editHouseInfo?houseId=" + data.id, id, "房屋详情");
+            
+            window.parent.btnTabAdd("../houses/editHouseInfo?houseId=" + data.id, id, data.projectName);
             //最后不管是否新增tab，最后都转到要打开的选项页面上
             window.parent.btnTabChange(id);
         }

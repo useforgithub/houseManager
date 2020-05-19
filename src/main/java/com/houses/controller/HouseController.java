@@ -105,7 +105,7 @@ public class HouseController {
 	public String getLogin(HttpServletRequest request) {
 
 		Object user = request.getSession().getAttribute("user");
-
+		System.out.println(request.getSession().getServletContext().getSessionTimeout());
 		if (user == null) {
 			return "login.html";
 		}
@@ -186,9 +186,14 @@ public class HouseController {
 	public int registerPost(@RequestBody User user, HttpServletRequest request) {
 
 		if (request.getSession().getAttribute("username").toString().equals("superadmin")) {
+			
+			if(user.getUser().equals("") || user.getPass().equals("")) {
+				return 3;
+			}
+			
 			int result = userService.register(user);
-
 			return result;
+			
 		} else {
 			System.out.println(request.getSession().getAttribute("username").toString() + "用户无注册权限");
 			return 2;
@@ -205,6 +210,9 @@ public class HouseController {
 	@ResponseBody
 	public int changePass(@RequestBody User user) {
 
+		if(user.getPass().equals("")) {
+			return 2;
+		}
 		int result = userService.changePass(user);
 
 		return result;

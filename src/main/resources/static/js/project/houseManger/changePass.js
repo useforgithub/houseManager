@@ -22,8 +22,11 @@ function changePass() {
         success : function (data) {
                 if (data == 0) {
                 	alert("修改成功");
+                	window.location.replace("./changePass");
                 } else if (data == 1) {
                 	alert("此用户不存在");
+                } else if (data == 2) {
+                	alert("密码不能为空");
                 } else {
                 	alert("修改失败");
                 }

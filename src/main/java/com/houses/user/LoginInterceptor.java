@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     	Object user = request.getSession().getAttribute("user");
     	
         if (user == null) {
-            request.getRequestDispatcher("/timeout").forward(request,response);
+            request.getRequestDispatcher("/houses/timeout").forward(request,response);
             return false;
         }
         return true;

@@ -22,8 +22,11 @@ function register() {
         success : function (data) {
                 if (data == 0) {
                 	alert("注册成功");
+                	window.location.replace("./register");
                 } else if (data == 1) {
                 	alert("用户已注册");
+                } else if (data == 3) {
+                	alert("用户信息不完整");
                 } else {
                 	alert("注册失败");
                 }
