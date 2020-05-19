@@ -104,8 +104,11 @@ public class HouseController {
 	@GetMapping(value = "/login")
 	public String getLogin(HttpServletRequest request) {
 
+		System.out.println("session timeout:"+request.getSession().getServletContext().getSessionTimeout());
+		System.out.println("user.dir:"+System.getProperty("user.dir"));
+		System.out.println("OS:"+System.getProperty("os.name"));
+		
 		Object user = request.getSession().getAttribute("user");
-		System.out.println(request.getSession().getServletContext().getSessionTimeout());
 		if (user == null) {
 			return "login.html";
 		}

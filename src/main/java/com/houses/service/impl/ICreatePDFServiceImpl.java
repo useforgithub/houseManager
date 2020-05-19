@@ -92,8 +92,14 @@ public class ICreatePDFServiceImpl implements ICreatePDFService {
 		BaseFont bfChinese;
 		Font font = null;
 		try {
-			bfChinese = BaseFont.createFont("C:/Windows/Fonts/simfang.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
-//			bfChinese = BaseFont.createFont("/opt/apache-tomcat-8.5.42/webapps/ROOT/WEB-INF/classes/static/font/simfang.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+			
+			String os = System.getProperty("os.name");
+			if (os.toLowerCase().startsWith("win")) {  //如果是Windows系统
+				bfChinese = BaseFont.createFont("C:/Windows/Fonts/simfang.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+			} else {  //linux 和mac
+				bfChinese = BaseFont.createFont("/font/simfang.ttf",BaseFont.IDENTITY_H,BaseFont.NOT_EMBEDDED);
+			}
+				
 			font = new Font(bfChinese,size);// 正常字体
 		} catch (Exception e) {
 			e.printStackTrace();
