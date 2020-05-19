@@ -14,7 +14,7 @@ import com.houses.common.model.User;
 public interface UserDao {
 
 	// 根据user获得一个User类
-	@Select("select * from admin where user=#{user}")
+	@Select("select user,pass from admin where user=#{user}")
 	User getUser(String user);
 	
 	// 根据id获得一个username

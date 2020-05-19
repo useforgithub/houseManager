@@ -12,6 +12,16 @@ public class User extends BaseDao {
 	@NotNull(message = "密码不能为空")
 	private String pass;
 	
+	private String verifyCode;
+	
+
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
 
 	public int getId() {
 		return id;
